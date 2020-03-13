@@ -2,18 +2,18 @@ package freecell.v1;
 
 public class ASCIIBoard {
 	
-	private static int[][] _board;
+	private static Card[][] _board;
 	private static int[] _foundations; // Stores the top cards
 	private static int[] _cells;
 	
 	public static void initialise() {
-		_board = new int[52][8];
+		_board = new Card[52][8];
 		_foundations = new int[4];
 		_cells = new int[4];
 	}
 	
 	public static void placeCardsOnBoard() {
-		int[] cards = Deck.getCardArray();
+		Card[] cards = Deck.getCardArray();
 		//Place card on board
 		int row = 0;
 		int cascade = 0;
@@ -38,9 +38,9 @@ public class ASCIIBoard {
 		System.out.println("| X X X X | S C D H |");
 		System.out.println("+---------+---------+");
 		System.out.print("|");
-		while (_board[row][cascade] != 0) {
-			Card.setCode(_board[row][cascade]);
-			System.out.print(" " + Card.getASCIIDisplay());
+		while (_board[row][cascade] != null) {
+			Card card = _board[row][cascade];
+			System.out.print(" " + card.getASCIIDisplay());
 			cascade++;
 			if (cascade == 8) {
 				cascade = 0;

@@ -1,8 +1,12 @@
 package freecell.v1;
 
 public class Card {
-	private static int _code;
-	public static void setCode(int code) {
+	private int _code;
+	
+	public Card(int code) {
+		_code = code;
+	}
+	public void setCode(int code) {
 		_code = code;
 	}
 	/**
@@ -16,7 +20,7 @@ public class Card {
 	 * @return String with format <rank> <suit>. If the card 
 	 * is blank, return " ". If the card value is outside 
 	 * the range 0-52, return null */
-	public static String getASCIIDisplay() {
+	public String getASCIIDisplay() {
 		if (_code == 0) {
 			return " ";
 		}
@@ -56,7 +60,7 @@ public class Card {
 	 * 11 if a Jack, 12 if a Queen, 13 if a King.
 	 * and -1 if not in the range 1 to 52.
 	 */
-	private static int getRank() {
+	private int getRank() {
 		if (_code <= 0 || _code > 52) {
 			return -1;
 		}
@@ -67,7 +71,7 @@ public class Card {
 			return rank;
 		}
 	}
-	public static int getSuit(int card) {
+	public int getSuit(int card) {
 		return (card -1 )/  13;
 	}
 	
