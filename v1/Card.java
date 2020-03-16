@@ -6,6 +6,32 @@ public class Card {
 	public Card(int code) {
 		_code = code;
 	}
+	
+	/**
+	 * Construct a card object by specifying its suits and
+	 * range. 
+	 * 
+	 * @param suit Value in range 1-4, using the same 
+	 * 			encoding as the get Suit() method.
+	 * @param rank value in the range 1-13, using the same
+	 * 			encoding as the getRank() method.
+	 * @param code
+	 * 
+	 * @see #getSuit()
+	 * @see #getRank();
+	 */
+	public Card(int suit, int rank) {
+		_code = (suit-1)*13 + rank;
+	}
+	
+	// A good habit is to always explicitly define a default constructor 
+	// even if another constructor is declared.
+	// this resemble the default constructor
+	public Card() {
+		_code = 0;
+	}
+	
+	
 	public void setCode(int code) {
 		_code = code;
 	}
@@ -42,8 +68,7 @@ public class Card {
 			result = "H";
 			break;
 		default:
-			System.out.println("%%Error-invalid card("+ _code +")");
-			return null;
+			throw new RuntimeException("Invalid card(" + _code + ")");
 		}
 		
 		int rank = getRank();
@@ -75,6 +100,9 @@ public class Card {
 		return (card -1 )/  13;
 	}
 	
+	public boolean canCover(Card card) {
+		return false;
+	}
 	
 
 }

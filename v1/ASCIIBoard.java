@@ -49,6 +49,35 @@ public class ASCIIBoard {
 			}
 		}
 	}
+	
+	public static void moveCascadeToCascade(int fromCascade, int toCascade) {
+		int fromRow = getUncoveredRow(fromCascade);
+		if (fromRow < 0) {
+			System.out.println("Nothing in " + fromCascade);
+			return;
+		}
+		Card toMove = _board[fromRow][fromCascade-1];
+		int toRow = getUncoveredRow(toCascade);
+		Card uncovered = null;
+		if (toRow < 0) {
+			uncovered = new Card();
+		} else {
+			uncovered = _board[toRow][toCascade-1];
+		}
 		
+		if (toMove.canCover(uncovered)) {
+			_board[fromRow][fromCascade-1] = new Card();
+			_board[toRow+1][toCascade-1] = toMove;
+		} else { // illegal move
+			System.out.println("%%Message - " + toMove.getASCIIDisplay() + "");
+		}
+		
+	}
+	
+	private static int getUncoveredRow(int n) {
+		// given the cascade number, return the last card that is not covered by another card
+		return 0;
+	}
+	
 	
 }

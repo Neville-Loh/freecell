@@ -1,49 +1,42 @@
 package freecell.v1;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+
+
 
 public class FreeCell {
-	
-	
-	private static void shuffleDeck(int[] cards) {
-		for (int i = 0; i < 100; i++) {
-			int pos = (int)(Math.random() * cards.length);
-			// Swap card at random position with first card
-			int tmp = cards[pos];
-			cards[pos] = cards[0];
-			cards[0] = tmp;
-		}
-	}
-	
-	private static int[] createDeck() {
-		// Create sorted card deck
-		int[] cards = new int[52];
-		
-		// Arrays are indexed from 0 to length-1,
-		for (int i = 0; i < cards.length; i++) {
-			int card = i + 1;
-			cards[i] = card;
-		}
-		return cards;
-	}
 
+
+
+	
 	public static void main(String[] args) {
 		System.out.println("hello world");
 		
 		
 		Deck.initialise();
 		Deck.shuffleDeck();
-		int[] d = createDeck();
 		ASCIIBoard.initialise();
 		ASCIIBoard.placeCardsOnBoard();
-		ASCIIBoard.displayBoard();
-		
-		// 2D array 
-//		int [][] board = new int[52][8];
-//		
-//		placeCardsOnBoard(board, cards);
-//		displayBoard(board,cards,cards);
 		
 		
+		while (true) {
+			ASCIIBoard.displayBoard();
+			String turn = KeyboardInput.readFromKeyboard("Cmd: ");
+			if (turn == null) {
+				// For now just go around the loop again
+				// later perhaps add a message saying what's wrong
+			} else if (turn.equals("q")) {
+				break;
+			} else if (turn.equals("1")) {
+				String from = KeyboardInput.readFromKeyboard("From: ");
+				int fromCascade = Integer.parseInt(from);
+				String to = KeyboardInput.readFromKeyboard("To: ");
+				int toCascade = Integer.parseInt(to);
+			} else if (turn.contentEquals("2")) {}
+			
+		}
 		
 	}
 
